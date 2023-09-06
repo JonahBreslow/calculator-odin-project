@@ -1,3 +1,3 @@
-PHONY: watch-css
-watch-css:
+PHONY: css
+css:
 	npm run watch-css
