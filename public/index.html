@@ -6,107 +6,116 @@
     <link rel="stylesheet" href="output-style.css" />
     <title>Calculator</title>
   </head>
-  <body>
-    <div class="flex justify-center mb-20 mt-10">
+  <body class="bg-blue-300 font-mono">
+    <div class="flex justify-center mb-40 mt-10">
       <h1 class="font-bold text-6xl">Calculator</h1>
     </div>
-    <div class="flex flex-col justify-center items-center">
+    <div class="flex flex-col justify-center items-center"> 
       <div class="bg-gray-300 box-border border-2 border-black p-3 rounded-lg">
         <div
-          class="flex flex-col gap-0 justify-end items-end border-2 border-black rounded-lg bg-gray-400 w-96 h-24 mb-2 px-2"
+          class="flex flex-col gap-0 justify-between items-end border-2 border-black rounded-lg bg-gray-400 h-28 mb-2 px-2"
         >
-        <div id="expression" class="text-2xl"></div>
-          <div id="display" class="text-6xl">0</div>
+          <div id="expression" class="text-2xl"></div>
+          <div id="display" class="text-5xl">0</div>
         </div>
-        <div id="buttons" class="w-96 h-96 grid grid-cols-4 gap-2 p-1">
+        <div id="buttons" class="w-80 h-96 grid grid-cols-4 gap-2 p-1">
           <button
-            class="col-span-3 text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="col-span-3 text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             C
           </button>
           <button
-            class="text-xl bg-amber-500 hover:bg-amber-700 text-white font-bold rounded-full"
+            class="text-3xl bg-amber-500 hover:bg-amber-700 text-white font-bold rounded-full"
           >
             ÷
           </button>
           <button
-            class="text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             7
           </button>
           <button
-            class="text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             8
           </button>
           <button
-            class="text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             9
           </button>
           <button
-            class="text-xl bg-amber-500 hover:bg-amber-700 text-white font-bold rounded-full"
+            class="text-3xl bg-amber-500 hover:bg-amber-700 text-white font-bold rounded-full"
           >
             x
           </button>
           <button
-            class="text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             4
           </button>
           <button
-            class="text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             5
           </button>
           <button
-            class="text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             6
           </button>
           <button
-            class="text-xl bg-amber-500 hover:bg-amber-700 text-white font-bold rounded-full"
+            class="text-3xl bg-amber-500 hover:bg-amber-700 text-white font-bold rounded-full"
           >
             -
           </button>
           <button
-            class="text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             1
           </button>
           <button
-            class="text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             2
           </button>
           <button
-            class="text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             3
           </button>
           <button
-            class="text-xl bg-amber-500 hover:bg-amber-700 text-white font-bold rounded-full"
+            class="text-3xl bg-amber-500 hover:bg-amber-700 text-white font-bold rounded-full"
           >
             +
           </button>
           <button
-            class="col-span-2 text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="col-span-2 text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             0
           </button>
           <button
-            class="text-xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
+            class="text-3xl bg-gray-500 hover:bg-gray-700 text-white font-bold rounded-full"
           >
             .
           </button>
           <button
             id="equals"
-            class="text-xl bg-amber-500 hover:bg-amber-700 text-white font-bold rounded-full"
+            class="text-3xl bg-amber-500 hover:bg-amber-700 text-white font-bold rounded-full"
           >
             =
           </button>
         </div>
       </div>
+    </div>
+    <div
+      class="fixed bottom-0 left-0 w-full bg-gray-900 text-white text-center text-xl py-9"
+    >
+      Copyright ©
+      <script>
+        document.write(new Date().getFullYear());
+      </script>
+      jonahbreslow
     </div>
 
     <script src="script.js"></script>

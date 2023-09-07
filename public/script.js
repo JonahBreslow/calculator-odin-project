@@ -28,7 +28,7 @@ function buildExpression(e) {
         expr.operator = buttonValue;
         expression.innerHTML = `${expr.lOperand} ${expr.operator}`;
       } else if (expr.lOperand !== "" && expr.rOperand !== "") {
-        expression.innerHTML = `${expr.lOperand} ${expr.operator} ${expr.rOperand} ${buttonValue}`;
+        expression.innerHTML = `${expr.lOperand} ${expr.operator} ${expr.rOperand} `;
         result = operate(expr.lOperand, expr.operator, expr.rOperand);
         expr.lOperand = result.toString();
         expr.operator = buttonValue;
@@ -81,6 +81,9 @@ function buildExpression(e) {
       break;
 
     default:
+      if (expression.innerHTML.includes("=")) {
+        resetCalculator();
+      }
       addToOperands(buttonValue);
       break;
   }
@@ -98,9 +101,17 @@ function resetCalculator() {
 
 function addToOperands(buttonValue) {
   if (expr.operator === "") {
-    expr.lOperand += buttonValue;
+    if (expr.lOperand.includes(".") && buttonValue === ".") {
+      return;
+    } else {
+      expr.lOperand += buttonValue;
+    }
   } else {
-    expr.rOperand += buttonValue;
+    if (expr.rOperand.includes(".") && buttonValue === ".") {
+      return;
+    } else {
+      expr.rOperand += buttonValue;
+    }
   }
   display.innerHTML = expr.operator === "" ? expr.lOperand : expr.rOperand;
   console.log(expr);
@@ -117,11 +128,15 @@ function operate(lo, op, ro) {
     case "x":
       return round(left * right);
     case "÷":
-      return round(left / right);
+      if (right === 0) {
+        return "Div by 0";
+      } else {
+        return round(left / right);
+      }
   }
 }
 
 // TODO: Make rounding better. This is too naive. use precision based on inputs, not just 1000
 function round(number) {
-  return Math.round(number * 1000) / 1000;
+  return Math.round(number * 1000000000) / 1000000000;
 }
