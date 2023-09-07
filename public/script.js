@@ -1,5 +1,6 @@
 // DOM elements
 const display = document.getElementById("display");
+const expression = document.getElementById("expression");
 const buttons = document.querySelectorAll("button");
 
 // Variables
@@ -25,7 +26,9 @@ function buildExpression(e) {
     case "÷":
       if (expr.lOperand !== "" && expr.rOperand === "") {
         expr.operator = buttonValue;
+        expression.innerHTML = `${expr.lOperand} ${expr.operator}`;
       } else if (expr.lOperand !== "" && expr.rOperand !== "") {
+        expression.innerHTML = `${expr.lOperand} ${expr.operator} ${expr.rOperand} ${buttonValue}`;
         result = operate(expr.lOperand, expr.operator, expr.rOperand);
         expr.lOperand = result.toString();
         expr.operator = buttonValue;
@@ -38,6 +41,7 @@ function buildExpression(e) {
         expr.operator = buttonValue;
         expr.rOperand = "";
       }
+      console.log(expr);
       break;
 
     case "=":
@@ -46,6 +50,7 @@ function buildExpression(e) {
         expr.operator !== "" &&
         expr.rOperand !== ""
       ) {
+        expression.innerHTML = `${expr.lOperand} ${expr.operator} ${expr.rOperand} = `;
         result = operate(expr.lOperand, expr.operator, expr.rOperand);
         expr.lOperand = result.toString();
         expr.operator = "";
@@ -56,9 +61,9 @@ function buildExpression(e) {
         expr.operator !== "" &&
         expr.rOperand === ""
       ) {
+        expression.innerHTML = `${expr.lOperand} ${expr.operator} ${expr.lOperand} = `;
         result = operate(expr.lOperand, expr.operator, expr.lOperand);
-        expr.lOperand = result.toString();
-        expr.rOperand = "";
+        expr.rOperand = result.toString();
         display.innerHTML = expr.lOperand;
       }
       console.log(expr);
@@ -70,37 +75,53 @@ function buildExpression(e) {
         operator: "",
         rOperand: "",
       };
+      expression.innerHTML = "";
       display.innerHTML = 0;
+      console.log(expr);
       break;
 
     default:
-      if (expr.operator === "") {
-        expr.lOperand += buttonValue;
-      } else {
-        expr.rOperand += buttonValue;
-      }
-      display.innerHTML = expr.operator === "" ? expr.lOperand : expr.rOperand;
+      addToOperands(buttonValue);
       break;
   }
 }
 
+function resetCalculator() {
+  display.innerHTML = "";
+  expression.innerHTML = "";
+  expr = {
+    lOperand: "",
+    operator: "",
+    rOperand: "",
+  };
+}
+
+function addToOperands(buttonValue) {
+  if (expr.operator === "") {
+    expr.lOperand += buttonValue;
+  } else {
+    expr.rOperand += buttonValue;
+  }
+  display.innerHTML = expr.operator === "" ? expr.lOperand : expr.rOperand;
+  console.log(expr);
+}
+
 function operate(lo, op, ro) {
-  // TODO: Deal with floating points -___-
   const left = Number(lo);
   const right = Number(ro);
   switch (op) {
     case "+":
-      return left + right;
+      return round(left + right);
     case "-":
-      return left - right;
+      return round(left - right);
     case "x":
-      return left * right;
+      return round(left * right);
     case "÷":
-      return left / right;
+      return round(left / right);
   }
 }
 
-function precisionRound(number, precision) {
-  const factor = Math.pow(10, precision);
-  return Math.round(number * factor) / factor;
+// TODO: Make rounding better. This is too naive. use precision based on inputs, not just 1000
+function round(number) {
+  return Math.round(number * 1000) / 1000;
 }
